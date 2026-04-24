@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Services | TOMERCON FUSION LABS — AI · Automation · Experimental</title>
+    <!-- Google Fonts: Outfit + Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0A0F1A;
+            color: #E2E8F0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        h1, h2, h3, .logo, .nav-links a, .btn-primary, .btn-outline, .hero-badge, .section-title h2 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        :root {
+            --bg-deep: #0A0F1A;
+            --bg-surface: #111827;
+            --bg-card: #1E293B;
+            --bg-elevated: #1E2A3A;
+            --border-dim: #2D3A4E;
+            --accent-cyan: #06B6D4;
+            --accent-glow: #22D3EE;
+            --accent-deep: #0891B2;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 20px 30px -10px rgba(6, 182, 212, 0.2);
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+        h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 1.25rem; font-weight: 700; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+
+        .section-title { text-align: center; margin-bottom: 2.5rem; position: relative; }
+        .section-title h2 {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFFFFF 0%, #22D3EE 40%, #06B6D4 100%);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            padding-bottom: 6px; text-shadow: none;
+        }
+
+        .logo {
+            font-size: 1.7rem; font-weight: 800;
+            background: linear-gradient(125deg, #FFFFFF, #22D3EE, #06B6D4);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            letter-spacing: -0.02em; text-decoration: none; text-shadow: none;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1rem 0; background: rgba(10, 15, 26, 0.98); backdrop-filter: none;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all 0.3s ease;
+        }
+        nav::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px;
+            
+            background-size: 200% auto; 
+        }
+        @keyframes navGlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; font-weight: 500; color: var(--text-secondary);
+            transition: all 0.25s ease; font-size: 1rem; position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background: linear-gradient(120deg, #FFFFFF, #22D3EE);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            transform: translateY(-1px);
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -6px; left: 0; width: 0%; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-glow));
+            transition: width 0.3s ease; border-radius: 2px;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 12px; background: var(--accent-cyan);
+            color: #0F172A; padding: 14px 36px; border-radius: 5px; font-weight: 700; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4); font-size: 1.05rem; letter-spacing: -0.01em;
+            border: none; cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #22D3EE; transform: translateY(-3px);
+            box-shadow: 0 16px 28px rgba(34, 211, 238, 0.5); color: #000;
+        }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 10px; background: transparent;
+            color: var(--accent-cyan); padding: 12px 30px; border-radius: 5px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease; border: 1.5px solid var(--accent-cyan);
+        }
+        .btn-outline:hover {
+            background: rgba(6, 182, 212, 0.1); border-color: var(--accent-glow);
+            color: var(--accent-glow); transform: translateY(-2px);
+        }
+
+        /* FULL-PAGE HERO */
+        .services-hero-full {
+            position: relative;
+            background-image: url('/images/ABOUT_HERO.png');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            isolation: isolate;
+            margin-bottom: 1rem;
+        }
+        .services-hero-full::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.55) 0%, rgba(2,6,23,0.75) 100%);
+            z-index: 1;
+        }
+        .hero-split-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .hero-left { flex: 1.2; min-width: 300px; padding: 2rem 0; }
+        .hero-left .hero-badge {
+            background: rgba(6, 182, 212, 0.2); backdrop-filter: blur(6px);
+            border: 1px solid rgba(34, 211, 238, 0.5); color: #E0F2FE;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 700; display: inline-block; padding: 6px 18px;
+            border-radius: 40px; margin-bottom: 1.5rem;
+            animation: pulseGlow 3s infinite;
+        }
+        .hero-left h1 {
+            color: white; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 30%, #22D3EE 70%, #06B6D4 100%);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            display: inline-block; font-size: 4rem; letter-spacing: -0.02em;
+        }
+        .hero-left .hero-description {
+            font-size: 1.2rem; color: rgba(255,255,255,0.95);
+            max-width: 600px; margin-top: 1rem; line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            border-left: 3px solid var(--accent-cyan); padding-left: 1.2rem;
+        }
+        .hero-right {
+            flex: 0.8; min-width: 260px; display: flex;
+            flex-direction: column; justify-content: flex-end; align-items: flex-end;
+            align-self: flex-end; margin-bottom: 2rem; padding-bottom: 1rem;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(34, 211, 238, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.7); }
+        }
+
+        /* Services Grid - 5 large cards */
+        .services-grid-expanded {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+            margin: 2.5rem 0 4rem;
+        }
+        .service-card {
+            background: var(--bg-card); border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--border-dim); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: var(--shadow-sm); display: flex; flex-direction: column; height: 100%;
+            backdrop-filter: blur(4px);
+        }
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02); border-color: var(--accent-cyan);
+            box-shadow: 0 30px 45px -12px rgba(6, 182, 212, 0.4);
+        }
+        .service-image { height: 220px; overflow: hidden; position: relative; }
+        .service-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-card:hover .service-image img { transform: scale(1.15); }
+        .service-image::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,15,26,0.7) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .service-card:hover .service-image::after { opacity: 1; }
+        .service-content { padding: 2rem 1.8rem 2.2rem; flex: 1; display: flex; flex-direction: column; }
+        .service-icon { font-size: 2.6rem; color: var(--accent-cyan); margin-bottom: 1.2rem; transition: all 0.3s; }
+        .service-card:hover .service-icon { color: var(--accent-glow); transform: scale(1.15) rotate(3deg); }
+        .service-content h3 { font-size: 1.9rem; margin-bottom: 1rem; color: #FFFFFF; font-weight: 700; }
+        .service-desc { color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7; font-size: 1rem; }
+        
+        /* Read More Button - now links to detail page */
+        .readmore-btn {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+        }
+        .readmore-btn:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: var(--accent-glow);
+            color: var(--accent-glow);
+            transform: translateY(-2px);
+        }
+        
+        /* Metrics counter section */
+        .metrics-section {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border-radius: 10px; padding: 3rem 2rem; margin: 3rem 0;
+            border: 1px solid var(--border-dim);
+        }
+        .metrics-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;
+        }
+        .metric-item { padding: 1rem; }
+        .metric-number {
+            font-size: 4.5rem; font-weight: 800; font-family: 'Space Grotesk', monospace;
+            color: var(--accent-glow); line-height: 1.2; margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+        .metric-label { color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
+        .metric-desc { color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.9rem; }
+
+        /* Approach section */
+        .approach-section { padding: 4rem 0; background: var(--bg-surface); border-radius: 20px; margin: 3rem 0; }
+        .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .approach-card {
+            background: var(--bg-elevated); border-radius: 20px; padding: 2.5rem 2rem;
+            border: 1px solid var(--border-dim); transition: all 0.4s ease; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .approach-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-glow));
+            transform: scaleX(0); transition: transform 0.4s ease;
+        }
+        .approach-card:hover::before { transform: scaleX(1); }
+        .approach-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 25px 35px -12px rgba(6, 182, 212, 0.25); }
+        .approach-icon { font-size: 3.2rem; color: var(--accent-cyan); margin-bottom: 1.5rem; display: inline-block; transition: all 0.3s; }
+        .approach-card:hover .approach-icon { transform: scale(1.1) translateY(-5px); color: var(--accent-glow); }
+        .approach-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: white; }
+        .approach-card p { color: var(--text-muted); line-height: 1.6; }
+
+        /* Tech badges */
+        .tech-stack-showcase { margin: 4rem 0; }
+        .tech-badge-container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: center; margin-top: 2rem; }
+        .tech-badge {
+            background: rgba(6, 182, 212, 0.08); border: 1px solid var(--border-dim);
+            padding: 12px 28px; border-radius: 40px; font-weight: 500; backdrop-filter: blur(4px);
+            transition: all 0.3s ease; color: var(--text-secondary); font-size: 1rem;
+        }
+        .tech-badge i { margin-right: 10px; color: var(--accent-cyan); transition: all 0.3s; }
+        .tech-badge:hover {
+            background: var(--accent-cyan); color: #0F172A; border-color: var(--accent-cyan);
+            transform: translateY(-5px) scale(1.05); box-shadow: 0 12px 24px rgba(6,182,212,0.4);
+        }
+        .tech-badge:hover i { color: #0F172A; transform: rotate(5deg); }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(145deg, #0F1A2B, #0A1220); border-radius: 30px;
+            padding: 4rem 3rem; margin: 4rem 0; border: 1px solid #2D3A4E;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+        }
+        .cta-banner h3 { font-size: 2.5rem; color: white; max-width: 600px; }
+        .cta-banner span { color: var(--accent-cyan); }
+
+        /* Footer */
+        footer { background: #0B1120; padding: 2.5rem 0 1.5rem; border-top: 1px solid var(--border-dim); margin-top: 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .footer-brand h3 {
+            font-size: 1.5rem; font-weight: 700;
+            background: linear-gradient(135deg, #FFFFFF, #22D3EE, #06B6D4);
+            background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 0.8rem;
+        }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; max-width: 90%; }
+        .footer-social { display: flex; gap: 1rem; }
+        .social-link {
+            display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+            background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 8px;
+            color: var(--text-secondary); font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none;
+        }
+        .social-link:hover {
+            background: var(--accent-cyan); color: #0F172A; border-color: var(--accent-cyan);
+            transform: translateY(-3px); box-shadow: 0 8px 16px rgba(6, 182, 212, 0.3);
+        }
+        .footer-links h4 {
+            font-size: 1rem; font-weight: 600; color: #FFFFFF; margin-bottom: 1rem;
+            position: relative; display: inline-block;
+        }
+        .footer-links h4::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 35px; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-glow)); border-radius: 2px;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 0.6rem; }
+        .footer-links ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; }
+        .footer-links ul li a:hover { color: var(--accent-cyan); padding-left: 4px; }
+        .footer-bottom { text-align: center; padding-top: 1.2rem; border-top: 1px solid var(--border-dim); color: var(--text-muted); font-size: 0.8rem; }
+        .footer-bottom span { color: var(--accent-cyan); font-weight: 500; }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .services-grid-expanded { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .services-grid-expanded, .approach-grid, .metrics-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { max-width: 100%; }
+            .footer-social { justify-content: center; }
+            .footer-links h4::after { left: 50%; transform: translateX(-50%); width: 50px; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .hero-left h1 { font-size: 2.8rem; }
+        }
+        @media (max-width: 768px) {
+            .services-hero-full { background-attachment: scroll; min-height: 70vh; }
+            .hero-left h1 { font-size: 2.3rem; }
+            .metric-number { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="container nav-container" data-aos="fade-right">
+        <a href="index.html" class="logo">TOMERCON FUSION LABS</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html" class="active">Services</a></li>
+            <li><a href="strength.html">Innovation</a></li>
+            <li><a href="connect.html">Connect</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- FULL-PAGE HERO -->
+<section class="services-hero-full">
+    <div class="container hero-split-container">
+        <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
+            <div class="hero-badge"><i class="fas fa-cogs" style="margin-right: 8px;"></i>END-TO-END CAPABILITIES</div>
+            <h1>Core Services<br>& Solutions</h1>
+            <div class="hero-description">
+                Specialized AI, automation, and experimental tech for the <br>intelligent era — engineered at Fusion Labs.
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="connect.html" class="btn-primary">Start a project <i class="fas fa-arrow-right"></i></a>
+                <a href="#services" class="btn-outline" style="margin-left: 1rem;">Explore services <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </div>
+        <div class="hero-right" data-aos="fade-left"></div>
+    </div>
+</section>
+
+<!-- Services Grid - 5 cards with read-more linking to detail pages -->
+<section id="services" class="container">
+    <div class="section-title" data-aos="fade-up">
+        <h2>What we deliver</h2>
+        <p class="section-sub" style="color:var(--text-muted); margin-top:0.5rem;">Enterprise-grade intelligence & automation solutions</p>
+    </div>
+
+    <div class="services-grid-expanded" id="servicesGrid">
+        <!-- 1. AI Development -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="service-image">
+                <img src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=600" alt="AI Development">
+            </div>
+            <div class="service-content">
+                <div class="service-icon"></div>
+                <h3>AI Development</h3>
+                <p class="service-desc">Building intelligent systems. From custom LLMs to predictive models, we architect AI that drives decision-making and automation.</p>
+                <a href="service-detail.html?type=ai" class="readmore-btn"><span>Read more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 2. Automation -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-image">
+                <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Automation">
+            </div>
+            <div class="service-content">
+                <div class="service-icon"></div>
+                <h3>Intelligent Automation</h3>
+                <p class="service-desc">Reducing manual processes. Streamlined workflows, RPA, and intelligent process automation to unlock operational efficiency.</p>
+                <a href="service-detail.html?type=automation" class="readmore-btn"><span>Read more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 3. Experimental Tech -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-image">
+                <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Experimental Tech">
+            </div>
+            <div class="service-content">
+                <div class="service-icon"></div>
+                <h3>Experimental Tech</h3>
+                <p class="service-desc">Developing next-generation products. Prototyping, emerging tech incubation, and future-scenario engineering.</p>
+                <a href="service-detail.html?type=experimental" class="readmore-btn"><span>Read more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 4. Data Analytics (new) -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-image">
+                <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Data Analytics">
+            </div>
+            <div class="service-content">
+                <div class="service-icon"></div>
+                <h3>Data Analytics & BI</h3>
+                <p class="service-desc">Transform raw data into actionable insights. Predictive modeling, real-time dashboards, and BI solutions that drive strategy.</p>
+                <a href="service-detail.html?type=data" class="readmore-btn"><span>Read more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 5. Cloud & Edge (new) -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-image">
+                <img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cloud & Edge">
+            </div>
+            <div class="service-content">
+                <div class="service-icon"></div>
+                <h3>Cloud & Edge AI</h3>
+                <p class="service-desc">Scalable infrastructure for AI. Hybrid cloud, edge computing, and serverless architectures optimized for performance.</p>
+                <a href="service-detail.html?type=cloud" class="readmore-btn"><span>Read more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Ecosystem -->
+<section class="container tech-stack-showcase">
+    <div class="section-title" data-aos="fade-up">
+        <h2>Technology ecosystem</h2>
+        <p style="color:var(--text-muted);">Powered by cutting-edge tools and platforms</p>
+    </div>
+    <div class="tech-badge-container" data-aos="zoom-in">
+        <div class="tech-badge"><i class="fab fa-python"></i> Python · PyTorch · TensorFlow</div>
+        <div class="tech-badge"><i class="fas fa-cloud"></i> AWS · Azure · GCP</div>
+        <div class="tech-badge"><i class="fas fa-microchip"></i> NVIDIA · CUDA · Edge TPU</div>
+        <div class="tech-badge"><i class="fas fa-robot"></i> UiPath · LangChain · AutoGen</div>
+        <div class="tech-badge"><i class="fas fa-database"></i> Vector DBs · Snowflake · Kafka</div>
+        <div class="tech-badge"><i class="fas fa-code"></i> React · FastAPI · Docker · K8s</div>
+        <div class="tech-badge"><i class="fas fa-chart-bar"></i> Tableau · Power BI · Grafana</div>
+        <div class="tech-badge"><i class="fas fa-shield-alt"></i> MLOps · LLM Guardrails</div>
+    </div>
+</section>
+
+<!-- Footer unchanged -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>TOMERCON FUSION LABS</h3>
+                <p>Strategy that actually works. Execution-focused frameworks for measurable impact.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="strength.html">Strengths</a></li>
+                    <li><a href="connect.html">Connect</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 TOMERCON FUSION LABS — <span>Designed by Tomercon Developer</span>. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: false, offset: 80 });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    // counter animation observer
+    function animateCounter(counterElement, target) {
+        let current = 0;
+        const increment = target / 40;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                counterElement.textContent = target;
+                clearInterval(timer);
+            } else {
+                counterElement.textContent = Math.floor(current);
+            }
+        }, 2000/40);
+    }
+    const observerOptions = { threshold: 0.3, rootMargin: '0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    if (!counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        counter.textContent = '0';
+                        animateCounter(counter, target);
+                    }
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    const metricsSection = document.querySelector('.metrics-section');
+    if (metricsSection) observer.observe(metricsSection);
+    window.addEventListener('load', () => {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            if (counter.getBoundingClientRect().top < window.innerHeight && !counter.classList.contains('counted')) {
+                counter.classList.add('counted');
+                const target = parseInt(counter.getAttribute('data-target'));
+                counter.textContent = '0';
+                animateCounter(counter, target);
+            }
+        });
+    });
+</script>
+</body>
+</html>
