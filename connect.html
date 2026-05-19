@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Connect | TOMERCON FUSION LABS — Dark Fusion Theme</title>
     <!-- Google Fonts: Inter & Space Grotesk (matching About page) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +26,7 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
             padding-top: 80px;
+            width: 100%;
         }
 
         h1, h2, h3, .logo, .nav-links a, .btn-primary, .hero-badge, .section-title h2 {
@@ -53,9 +54,10 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 32px;
+            width: 100%;
         }
 
-        /* ===== NAVIGATION (exactly as About page, fixed, glass-morphism style) ===== */
+        /* ===== NAVIGATION ===== */
         nav {
             padding: 1rem 0;
             background: rgba(10, 15, 26, 0.98);
@@ -66,7 +68,6 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
-            
         }
 
         .nav-container {
@@ -86,12 +87,15 @@
             letter-spacing: -0.02em;
             text-decoration: none;
             text-shadow: none;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links {
             display: flex;
             gap: 2.2rem;
             list-style: none;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
@@ -136,7 +140,20 @@
             width: 100%;
         }
 
-        /* ===== HERO SECTION: identical background image & overlay (ABOUT HERO.png) ===== */
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            z-index: 1001;
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero-fixed-bg {
             position: relative;
             background-image: url('images/ABOUT_HERO.png');
@@ -149,7 +166,6 @@
             isolation: isolate;
         }
 
-        /* Dark sophisticated overlay for readability (exact same as about) */
         .hero-fixed-bg::before {
             content: '';
             position: absolute;
@@ -172,7 +188,6 @@
             gap: 2rem;
         }
 
-        /* Left column for connect hero text */
         .hero-left {
             flex: 1.2;
             min-width: 300px;
@@ -193,6 +208,8 @@
             border-radius: 40px;
             margin-bottom: 1.5rem;
             animation: pulseGlow 3s infinite;
+            word-break: break-word;
+            max-width: 100%;
         }
 
         .hero-left h1 {
@@ -219,7 +236,6 @@
             padding-left: 1.2rem;
         }
 
-        /* Right column for decorative tagline (mirroring about page structure) */
         .hero-right {
             flex: 0.8;
             min-width: 260px;
@@ -237,48 +253,7 @@
             50% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.7); }
         }
 
-        /* responsive hero */
-        @media (max-width: 992px) {
-            .hero-split-container {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .hero-left {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-left .hero-description {
-                text-align: center;
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid var(--accent-cyan);
-                padding-top: 1rem;
-            }
-            .hero-right {
-                align-items: center;
-                align-self: center;
-                width: 100%;
-                margin-bottom: 2rem;
-            }
-            .hero-left h1 {
-                font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-fixed-bg {
-                background-attachment: scroll;
-                min-height: 70vh;
-            }
-            .hero-left h1 {
-                font-size: 2.3rem;
-            }
-        }
-
-        /* ===== CONNECT SECTION: dark cards, cyan accents, fusion style ===== */
+        /* ===== CONNECT SECTION ===== */
         .connect-section {
             background: var(--bg-deep);
             padding: 5rem 0 6rem;
@@ -381,7 +356,6 @@
             filter: grayscale(0.2) contrast(0.9);
         }
 
-        /* New expanded map container */
         .expanded-map-container {
             margin-top: 2rem;
             border-radius: 10px;
@@ -465,10 +439,10 @@
             border-radius: 10px;
         }
 
-        /* ========== NEW FOOTER STYLES (Replacing previous footer) ========== */
+        /* ===== FOOTER ===== */
         footer {
             background: #0B1120;
-            padding: 2.5rem 0 1.5rem;      /* slightly reduced top padding */
+            padding: 2.5rem 0 1.5rem;
             border-top: 1px solid var(--border-dim);
         }
 
@@ -583,7 +557,83 @@
             font-weight: 500;
         }
 
+        /* ========== MOBILE RESPONSIVE FIXES ========== */
+        @media (max-width: 992px) {
+            .hero-split-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-left {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: auto;
+            }
+            .hero-left .hero-description {
+                text-align: center;
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid var(--accent-cyan);
+                padding-top: 1rem;
+                max-width: 100%;
+            }
+            .hero-right {
+                align-items: center;
+                align-self: center;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+        }
+
         @media (max-width: 900px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Hamburger menu visible */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 15, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                border-left: 1px solid var(--border-dim);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .connect-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -605,26 +655,121 @@
             .footer-links ul li a:hover {
                 padding-left: 0;
             }
+
+            .expanded-map-container iframe {
+                height: 250px;
+            }
+
+            .connect-section {
+                padding: 3rem 0 4rem;
+            }
+
+            /* Prevent horizontal scroll */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
         }
 
         @media (max-width: 768px) {
-            .connect-grid {
-                grid-template-columns: 1fr;
+            .hero-fixed-bg {
+                background-attachment: scroll;
+                min-height: 70vh;
             }
-            
+            .hero-left h1 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-left h1 {
+                font-size: 2rem;
+            }
+
+            .hero-left .hero-badge {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                padding: 6px 14px;
+            }
+
+            .hero-left .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .contact-details-card, .contact-form-box {
+                padding: 1.5rem;
+            }
+
+            .contact-details-card h3, .contact-form-box h3 {
+                font-size: 1.4rem;
+            }
+
+            .info-item {
+                gap: 0.8rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .info-icon {
+                font-size: 1.2rem;
+                width: 28px;
+            }
+
+            .info-text {
+                font-size: 0.9rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+            }
+
+            .social-links a {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
+
+            .form-group input, .form-group textarea {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .btn-submit {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+
             .expanded-map-container iframe {
-                height: 250px;
+                height: 200px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- FIXED NAVIGATION (exact same as About page) -->
+<!-- FIXED NAVIGATION -->
 <nav>
     <div class="container nav-container" data-aos="fade-right">
         <a href="index.html" class="logo">TOMERCON FUSION LABS</a>
-        <ul class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="service.html">Services</a></li>
@@ -634,10 +779,9 @@
     </div>
 </nav>
 
-<!-- HERO SECTION: exact background image, overlay, two-column split, matching About page style -->
+<!-- HERO SECTION -->
 <section class="hero-fixed-bg">
     <div class="container hero-split-container">
-        <!-- LEFT COLUMN: main heading + badge + descriptive line -->
         <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
             <div class="hero-badge">FUSION INTELLIGENCE</div><br>
             <h1>CONNECT WITH US</h1>
@@ -645,31 +789,30 @@
                 Ignite your next venture with deep-tech expertise. Reach out — let's collaborate, co-create, and engineer intelligent solutions that shape the future.
             </div>
         </div>
-        <!-- RIGHT COLUMN (decorative, same spacing as about) -->
-        <div class="hero-right">
-            <!-- subtle empty to preserve symmetry, can be used for future tagline -->
-        </div>
+        <div class="hero-right"></div>
     </div>
 </section>
 
-<!-- CONNECT SECTION: DARK FUSION CARDS + FORM + DETAILS -->
+<!-- CONNECT SECTION -->
 <section class="connect-section">
     <div class="container">
         <div class="connect-grid">
-            <!-- LEFT: Contact details card -->
             <div class="contact-details-card" data-aos="fade-right" data-aos-duration="800">
                 <h3><i class="fas fa-paper-plane" style="margin-right: 12px; color: var(--accent-cyan);"></i> Get in touch</h3>
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-building"></i></div>
-                    <div class="info-text"><strong>Registered Office</strong><br>Tomercon Developers LLP<br>20/1104, Parammal House, Thalancheri Paramba, Panniyankara, Kallai, Kozhikode, Kerala - 673003, India</div>
+                    <div class="info-text"><p><strong>Registered Office</strong><br>
+                    3rd Floor, Aleema square,<br>
+                    Beypore - Kozhikode Rd, Kannanchery,<br>
+                    Kozhikode, Kerala - 673003, India</p></div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                    <div class="info-text"><strong>Contact</strong><br>+91 98765 43210<br><span style="color: var(--accent-cyan);">Mon–Fri, 10.30am–6pm IST</span></div>
+                    <div class="info-text"><strong>Contact</strong><br>+91 97455 29558<br><span style="color: var(--accent-cyan);">Mon–Fri, 10.30am–6pm IST</span></div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                    <div class="info-text"><strong>Email</strong><br>hello@fusionlabs.ai</div>
+                    <div class="info-text"><strong>Email</strong><br>tomercondevelopers@gmail.com</div>
                 </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -677,24 +820,21 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
                 </div>
-                <p style="margin-top:1.2rem; color: var(--text-muted); font-size:0.85rem;">
+                <p style="margin-top:1.2rem; color: var(--text-muted); font-size:0.85rem;"></p>
             </div>
 
-            <!-- RIGHT: Contact form card -->
             <div class="contact-form-box" data-aos="fade-left" data-aos-duration="800">
                 <h3><i class="fas fa-comment-dots" style="margin-right: 12px; color: var(--accent-cyan);"></i> Send a message</h3>
                 <form id="contactForm">
                     <div class="form-group"><input type="text" id="name" placeholder="Full Name *" required></div>
                     <div class="form-group"><input type="email" id="email" placeholder="Email Address *" required></div>
                     <div class="form-group"><input type="tel" id="phone" placeholder="Phone Number"></div>
-                    
                     <div class="form-group"><textarea id="message" placeholder="Your Message *" rows="4" required></textarea></div>
                     <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
                     <p id="contactMsg" class="success-message">✓ Message delivered! Our team will reach out within 2 hours.</p>
                 </form>
             </div>
             
-            <!-- EXPANDED MAP - Spans full width below both cards -->
             <div class="expanded-map-container" data-aos="fade-up" data-aos-duration="800">
                 <iframe title="Office location expanded" src="https://maps.google.com/maps?q=Kallai+Kozhikode+Kerala+673003&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
             </div>
@@ -702,7 +842,7 @@
     </div>
 </section>
 
-<!-- FOOTER: exactly the same as About page (brand, links, social, copyright) -->
+<!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -741,16 +881,56 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Initialize AOS with similar settings as About page
     AOS.init({ duration: 800, once: false, mirror: false, offset: 80 });
 
-    // Form submission simulation (with success message)
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
+        });
+
+        // Close menu on link click
+        window.closeMenu = function() {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        };
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
+
+    // Form submission simulation
     const contactForm = document.getElementById('contactForm');
     const successMsg = document.getElementById('contactMsg');
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        // Basic validation
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
@@ -758,16 +938,14 @@
             alert('Please fill in all required fields.');
             return;
         }
-        // Simulate message sent
         successMsg.style.display = 'block';
-        // Reset form after 2.5 sec
         setTimeout(() => {
             successMsg.style.display = 'none';
             contactForm.reset();
         }, 2800);
     });
 
-    // Optional: smooth scroll for anchor links (if any)
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = document.querySelector(this.getAttribute('href'));

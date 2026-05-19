@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Service Details | TOMERCON FUSION LABS — AI · Automation · Experimental</title>
     <!-- Google Fonts: Outfit + Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
             padding-top: 80px;
+            width: 100%;
         }
 
         h1, h2, h3, h4, .logo, .nav-links a, .btn-primary, .btn-outline, .service-tab {
@@ -43,7 +44,7 @@
             --shadow-md: 0 20px 30px -10px rgba(6, 182, 212, 0.2);
         }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; width: 100%; }
 
         h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.25rem; font-weight: 700; }
         h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
@@ -62,6 +63,8 @@
             background: linear-gradient(125deg, #FFFFFF, #22D3EE, #06B6D4);
             background-clip: text; -webkit-background-clip: text; color: transparent;
             letter-spacing: -0.02em; text-decoration: none;
+            display: flex;
+            align-items: center;
         }
 
         /* Navigation */
@@ -74,7 +77,7 @@
             background-size: 200% auto;
         }
         .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; transition: all 0.3s ease; }
         .nav-links a {
             text-decoration: none; font-weight: 500; color: var(--text-secondary);
             transition: all 0.25s ease; font-size: 1rem; position: relative;
@@ -89,6 +92,19 @@
             transition: width 0.3s ease; border-radius: 2px;
         }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            z-index: 1001;
+        }
 
         .btn-primary {
             display: inline-flex; align-items: center; gap: 12px; background: var(--accent-cyan);
@@ -171,30 +187,28 @@
         .service-hero-image { height: 100%; min-height: 350px; overflow: hidden; }
         .service-hero-image img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ===== NEW FEATURES GRID STYLES (2x2, no card, hover shadow bottom-right → center) ===== */
+        /* Features Grid */
         .features-grid-new {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem 2.5rem;  /* row gap 2rem, column gap 2.5rem */
+            gap: 2rem 2.5rem;
             margin: 2.5rem 0;
         }
 
         .feature-item-new {
-            background: transparent;   /* no card background */
+            background: transparent;
             border: none;
             padding: 0.25rem 0;
             transition: box-shadow 0.3s ease, transform 0.25s ease;
-            border-radius: 0;          /* not a card */
+            border-radius: 0;
             box-shadow: none;
-            /* initial shadow */
         }
 
         .feature-item-new:hover {
-            /* Hover shadow effect: bottom & right side → center direction */
             box-shadow: 12px 12px 20px -8px rgba(6, 182, 212, 0.35), 
                         8px 8px 16px -4px rgba(0, 0, 0, 0.4);
-            transform: translate(-2px, -2px); /* subtle lift to emphasize shadow direction */
-            background: transparent;   /* keep transparent */
+            transform: translate(-2px, -2px);
+            background: transparent;
             border: none;
         }
 
@@ -254,10 +268,9 @@
         .process-step {
             text-align: center; padding: 1.5rem; background: transparent;
             border-radius: 10px; border: 1px solid var(--border-dim);
-            transition: all 0.3s ease; /* Added for hover effect */
+            transition: all 0.3s ease;
         }
         
-        /* NEW: Hover effect for process-step cards */
         .process-step:hover {
             background: rgba(6, 182, 212, 0.05);
             border-color: var(--accent-cyan);
@@ -310,17 +323,185 @@
         .footer-bottom { text-align: center; padding-top: 1.2rem; border-top: 1px solid var(--border-dim); color: var(--text-muted); font-size: 0.8rem; }
         .footer-bottom span { color: var(--accent-cyan); font-weight: 500; }
 
-        /* Responsive */
+        /* ========== MOBILE RESPONSIVE FIXES ========== */
         @media (max-width: 900px) {
-            .service-hero { grid-template-columns: 1fr; }
-            .features-grid-new, .capabilities-list, .process-steps { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-social { justify-content: center; }
-            .footer-links h4::after { left: 50%; transform: translateX(-50%); width: 50px; }
-            .nav-container { flex-direction: column; gap: 1rem; }
-            h1 { font-size: 2.5rem; }
-            .service-hero-content h2 { font-size: 2rem; }
-            .feature-item-new p { max-width: 100%; }
+            body {
+                padding-top: 70px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Hamburger menu visible */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 15, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                border-left: 1px solid var(--border-dim);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .service-hero { 
+                grid-template-columns: 1fr; 
+                gap: 0;
+            }
+            .service-hero-content {
+                padding: 2rem;
+            }
+            .service-hero-image {
+                min-height: 250px;
+            }
+            .features-grid-new, 
+            .capabilities-list, 
+            .process-steps { 
+                grid-template-columns: 1fr; 
+            }
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+            }
+            .footer-social { 
+                justify-content: center; 
+            }
+            .footer-links h4::after { 
+                left: 50%; 
+                transform: translateX(-50%); 
+                width: 50px; 
+            }
+            .footer-links ul li a:hover {
+                padding-left: 0;
+            }
+            h1 { 
+                font-size: 2.5rem; 
+            }
+            .service-hero-content h2 { 
+                font-size: 2rem; 
+            }
+            .feature-item-new p { 
+                max-width: 100%; 
+            }
+            .page-header {
+                padding: 2rem 1.5rem;
+            }
+            .service-tabs-nav {
+                gap: 0.5rem;
+            }
+            .service-tab {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+            .cta-section h3 {
+                font-size: 1.5rem;
+            }
+
+            /* Prevent horizontal scroll */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            .service-hero-content {
+                padding: 1.5rem;
+            }
+            .service-hero-content h2 {
+                font-size: 1.6rem;
+            }
+            .service-hero-content p {
+                font-size: 0.95rem;
+            }
+            .service-hero-image {
+                min-height: 200px;
+            }
+
+            .feature-item-new h4 {
+                font-size: 1.1rem;
+            }
+            .feature-item-new p {
+                font-size: 0.9rem;
+            }
+
+            .capabilities-section {
+                padding: 1.5rem;
+            }
+            .capabilities-list li {
+                font-size: 0.85rem;
+            }
+
+            .tech-tag {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .service-tab {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            .btn-primary, .btn-outline {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+
+            .cta-section {
+                padding: 1.5rem 1rem;
+            }
+            .cta-section h3 {
+                font-size: 1.3rem;
+            }
+
+            .page-header {
+                padding: 1.5rem 1rem;
+            }
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -330,7 +511,10 @@
 <nav>
     <div class="container nav-container" data-aos="fade-right">
         <a href="index.html" class="logo">TOMERCON FUSION LABS</a>
-        <ul class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="service.html">Services</a></li>
@@ -339,8 +523,6 @@
         </ul>
     </div>
 </nav>
-
-
 
 <!-- ==================== SERVICE 1: AI DEVELOPMENT ==================== -->
 <section class="container service-detail-section active" id="service-ai">
@@ -362,7 +544,6 @@
         </div>
     </div>
 
-    <!-- NEW FEATURES SECTION (2x2 grid, no cards, hover shadow bottom-right → center) -->
     <div class="features-grid-new" data-aos="fade-up">
         <div class="feature-item-new">
             <i class="fas fa-language"></i>
@@ -401,8 +582,6 @@
             <li><i class="fas fa-check-circle"></i> Responsible AI & bias mitigation strategies</li>
         </ul>
     </div>
-
-    
 </section>
 
 <!-- ==================== SERVICE 2: INTELLIGENT AUTOMATION ==================== -->
@@ -463,8 +642,6 @@
             <li><i class="fas fa-check-circle"></i> Automated testing & QA frameworks</li>
         </ul>
     </div>
-
-    
 </section>
 
 <!-- ==================== SERVICE 3: EXPERIMENTAL TECH ==================== -->
@@ -525,8 +702,6 @@
             <li><i class="fas fa-check-circle"></i> Emerging tech landscape analysis & consulting</li>
         </ul>
     </div>
-
-    
 </section>
 
 <!-- ==================== SERVICE 4: DATA ANALYTICS & BI ==================== -->
@@ -587,8 +762,6 @@
             <li><i class="fas fa-check-circle"></i> A/B testing & experimentation platforms</li>
         </ul>
     </div>
-
-    
 </section>
 
 <!-- ==================== SERVICE 5: CLOUD & EDGE AI ==================== -->
@@ -649,8 +822,6 @@
             <li><i class="fas fa-check-circle"></i> Cost optimization & FinOps for AI workloads</li>
         </ul>
     </div>
-
-    
 </section>
 
 <!-- CTA Section -->
@@ -658,10 +829,9 @@
     <div class="cta-section" data-aos="fade-up">
         <h3>Ready to transform your business?</h3>
         <p>Let's discuss how our services can accelerate your AI and automation journey.</p>
-        <div style="display: flex; gap: 1.5rem; justify-content: center;">
-          <a href="service.html" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Services</a>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="service.html" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Services</a>
             <a href="connect.html" class="btn-primary">Start a project <i class="fas fa-arrow-right"></i></a>
-            
         </div>
     </div>
 </section>
@@ -706,6 +876,48 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 800, once: false, mirror: false, offset: 80 });
+
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
+        });
+
+        // Close menu on link click
+        window.closeMenu = function() {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        };
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
 
     const tabs = document.querySelectorAll('.service-tab');
     const sections = document.querySelectorAll('.service-detail-section');

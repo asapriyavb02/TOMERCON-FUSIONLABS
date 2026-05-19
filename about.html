@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>TOMERCON FUSION LABS | About — Innovation Arm — Dark Fusion Theme</title>
     <!-- Google Fonts: Inter & Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,7 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
             padding-top: 80px;
+            width: 100%;
         }
 
         h1, h2, h3, .logo, .nav-links a, .btn-primary, .hero-badge, .section-title h2 {
@@ -52,6 +53,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 32px;
+            width: 100%;
         }
 
         h1 {
@@ -144,12 +146,15 @@
             letter-spacing: -0.02em;
             text-decoration: none;
             text-shadow: none;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links {
             display: flex;
             gap: 2.2rem;
             list-style: none;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
@@ -194,7 +199,20 @@
             width: 100%;
         }
 
-        /* ========== NEW PROFESSIONAL HERO: 2-COLUMN SPLIT ========== */
+        /* Hamburger menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            z-index: 1001;
+        }
+
+        /* ========== HERO SECTION ========== */
         .hero-fixed-bg {
             position: relative;
             background-image: url('images/ABOUT_HERO.png');
@@ -207,7 +225,6 @@
             isolation: isolate;
         }
         
-        /* Dark sophisticated overlay for readability and depth */
         .hero-fixed-bg::before {
             content: '';
             position: absolute;
@@ -230,7 +247,6 @@
             gap: 2rem;
         }
         
-        /* Left column: Main title and powerful intro */
         .hero-left {
             flex: 1.2;
             min-width: 300px;
@@ -251,6 +267,8 @@
             border-radius: 40px;
             margin-bottom: 1.5rem;
             animation: pulseGlow 3s infinite;
+            word-break: break-word;
+            max-width: 100%;
         }
         
         .hero-left h1 {
@@ -277,7 +295,6 @@
             padding-left: 1.2rem;
         }
         
-        /* Right column: bottom-aligned tagline with elegant style */
         .hero-right {
             flex: 0.8;
             min-width: 260px;
@@ -290,70 +307,12 @@
             padding-bottom: 1rem;
         }
         
-        @keyframes floatShape {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(30px, -20px) rotate(5deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-3deg) scale(0.95); }
-            100% { transform: translate(15px, -15px) rotate(2deg) scale(1.02); }
-        }
-        
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 5px rgba(34, 211, 238, 0.3); }
             50% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.7); }
         }
-        
-        /* Responsive hero split */
-        @media (max-width: 992px) {
-            .hero-split-container {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .hero-left {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-left .hero-description {
-                text-align: center;
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid var(--accent-cyan);
-                padding-top: 1rem;
-            }
-            .hero-right {
-                align-items: center;
-                align-self: center;
-                width: 100%;
-                margin-bottom: 2rem;
-            }
-            .hero-tagline {
-                text-align: center;
-                border-right: none;
-                border-bottom: 3px solid var(--accent-cyan);
-                width: 100%;
-                max-width: 400px;
-            }
-            .hero-left h1 {
-                font-size: 2.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-fixed-bg {
-                background-attachment: scroll;
-                min-height: 70vh;
-            }
-            .hero-left h1 {
-                font-size: 2.3rem;
-            }
-            .hero-tagline p {
-                font-size: 1.2rem;
-            }
-        }
 
-        /* remaining sections styles (unchanged but keep elegance) */
+        /* ========== FUSION STORY SECTION ========== */
         .fusion-story-section {
             position: relative;
             background: var(--bg-deep);
@@ -363,7 +322,6 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            position: relative;
         }
         
         .fusion-story-section::before {
@@ -433,6 +391,7 @@
             display: flex;
             gap: 2rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .mini-stat {
@@ -485,11 +444,8 @@
             display: block;
             transition: transform 0.6s ease;
         }
-        
-        .single-about-image:hover img {
-            transform: scale(1.02);
-        }
 
+        /* ========== MISSION VALUES SECTION ========== */
         .mission-values-section {
             background: var(--bg-deep);
             padding: 4rem 0 3rem;
@@ -511,7 +467,6 @@
             overflow: hidden;
             cursor: pointer;
         }
-        /* MODIFIED: light black overlay on hover with image */
         .mv-card::after {
             content: '';
             position: absolute;
@@ -525,7 +480,7 @@
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
-            background-color: rgba(0,0,0,0.70); /* light black overlay base */
+            background-color: rgba(0,0,0,0.70);
             background-blend-mode: overlay;
         }
         .mv-card:nth-child(1)::after {
@@ -538,7 +493,7 @@
             background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800');
         }
         .mv-card:hover::after {
-            opacity: 1; /* show image + light black overlay */
+            opacity: 1;
         }
         .mv-card:hover {
             transform: translateY(-8px);
@@ -549,12 +504,6 @@
             position: relative;
             z-index: 1;
             transition: all 0.3s ease;
-        }
-        .mv-card:hover .mv-icon,
-        .mv-card:hover h3,
-        .mv-card:hover p {
-            color: white !important;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
         .mv-icon {
             font-size: 2.8rem;
@@ -571,6 +520,7 @@
             line-height: 1.5;
         }
 
+        /* ========== FLIP SECTION ========== */
         .flip-section {
             padding: 2.5rem 0 3rem;
             background: var(--bg-deep);
@@ -617,7 +567,6 @@
             border: 1px solid var(--border-dim);
             padding: 1.2rem;
         }
-        /* MODIFIED: light black overlay on back side image */
         .flip-back {
             background: #0B1120;
             transform: rotateY(180deg);
@@ -638,7 +587,7 @@
             background-repeat: no-repeat;
             opacity: 0.85;
             z-index: 0;
-            background-color: rgba(0,0,0,0.5); /* light black overlay */
+            background-color: rgba(0,0,0,0.5);
             background-blend-mode: overlay;
         }
         .flip-card:nth-child(1) .flip-back::before { background-image: url('https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=600'); }
@@ -651,6 +600,7 @@
         .flip-front h3 { font-size: 1.25rem; margin-bottom: 0.4rem; color: #FFFFFF; }
         .flip-front p { color: var(--text-muted); font-size: 0.8rem; }
 
+        /* ========== STATS SECTION ========== */
         .stats-section {
             background: linear-gradient(120deg, #020617 0%, #0F172A 100%);
             color: white;
@@ -678,7 +628,7 @@
             justify-content: center;
         }
         .why-card {
-            flex:1;
+            flex: 1;
             min-width: 240px;
             background: var(--bg-card);
             border-radius: 2rem;
@@ -695,10 +645,11 @@
         }
         .why-card i { color: var(--accent-cyan); margin-bottom: 1rem; font-size: 2rem; }
         .why-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
-        /* ========== NEW FOOTER STYLES (Replacing previous footer) ========== */
+
+        /* ========== FOOTER ========== */
         footer {
             background: #0B1120;
-            padding: 2.5rem 0 1.5rem;      /* slightly reduced top padding */
+            padding: 2.5rem 0 1.5rem;
             border-top: 1px solid var(--border-dim);
         }
 
@@ -813,10 +764,106 @@
             font-weight: 500;
         }
 
+        /* ========== MOBILE RESPONSIVE FIXES ========== */
+        @media (max-width: 992px) {
+            .hero-split-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-left {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: auto;
+            }
+            .hero-left .hero-description {
+                text-align: center;
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid var(--accent-cyan);
+                padding-top: 1rem;
+                max-width: 100%;
+            }
+            .hero-right {
+                align-items: center;
+                align-self: center;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+        }
+
         @media (max-width: 900px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Hamburger menu visible */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 15, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                border-left: 1px solid var(--border-dim);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flip-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .flip-card {
+                height: 250px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .fusion-story-wrapper {
+                flex-direction: column;
+            }
+
+            .fusion-story-content h2 {
+                font-size: 2.2rem;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
                 text-align: center;
             }
             .footer-brand p {
@@ -835,17 +882,95 @@
             .footer-links ul li a:hover {
                 padding-left: 0;
             }
+
+            /* Prevent horizontal scroll */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
         }
-        @media (max-width: 1100px) {
-            .flip-grid { grid-template-columns: repeat(2, 1fr); }
-            .fusion-story-wrapper { flex-direction: column; }
+
+        @media (max-width: 768px) {
+            .hero-fixed-bg {
+                background-attachment: scroll;
+                min-height: 70vh;
+            }
+            .hero-left h1 {
+                font-size: 2.3rem;
+            }
         }
-        @media (max-width: 900px) {
-            .mv-grid { grid-template-columns: 1fr; }
-            .flip-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-left h1 {
+                font-size: 2rem;
+            }
+
+            .hero-left .hero-badge {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                padding: 6px 14px;
+            }
+
+            .hero-left .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .fusion-story-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .fusion-story-content .lead {
+                font-size: 1rem;
+            }
+
+            .fusion-story-image {
+                min-width: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .flip-card {
+                height: 220px;
+            }
+
+            .mv-card {
+                padding: 1.2rem;
+            }
+
+            .mv-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .why-card {
+                min-width: 100%;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .fusion-stats-mini {
+                gap: 1rem;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -854,7 +979,10 @@
 <nav>
     <div class="container nav-container" data-aos="fade-right">
         <a href="index.html" class="logo">TOMERCON FUSION LABS</a>
-        <ul class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html" class="active">About</a></li>
             <li><a href="service.html">Services</a></li>
@@ -864,11 +992,9 @@
     </div>
 </nav>
 
-<!-- HERO SECTION: TWO-COLUMN SPLIT (Left Title + Right Bottom Tagline) -->
+<!-- HERO SECTION -->
 <section class="hero-fixed-bg">
-    
     <div class="container hero-split-container">
-        <!-- LEFT SIDE: Main Title + Badge -->
         <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
             <div class="hero-badge">FUSION INTELLIGENCE</div><br>
             <h1>ABOUT US</h1>
@@ -876,14 +1002,11 @@
                 The dedicated innovation engine of Tomercon Developers LLP. AI research, intelligent automation, and next-gen engineering for enterprise transformation.
             </div>
         </div>
-        <!-- RIGHT SIDE: Tagline bottom-aligned -->
-        <div class="hero-right" >
-            
-        </div>
+        <div class="hero-right"></div>
     </div>
 </section>
 
-<!-- rest of the sections unchanged (fusion story, mission, flip etc) -->
+<!-- FUSION STORY SECTION -->
 <section class="fusion-story-section">
     <div class="container">
         <div class="fusion-story-wrapper">
@@ -893,7 +1016,6 @@
                 <p class="lead">Born at the intersection of deep research and industrial pragmatism. We transform complex challenges into scalable intelligent systems.</p>
                 <p class="description">Founded as the advanced R&D division of Tomercon Developers LLP, Fusion Labs operates with the agility of a startup and the discipline of an enterprise. We bring together machine learning engineers, product strategists, and domain experts to deliver AI-first solutions that create measurable impact.</p>
                 <div class="fusion-stats-mini">
-                    <!-- Added stat-counter spans for counting animation -->
                     <div class="mini-stat"><span class="stat-num"><span class="stat-counter" data-target="40">0</span>+</span><span class="stat-label">Prototypes</span></div>
                     <div class="mini-stat"><span class="stat-num"><span class="stat-counter" data-target="15">0</span>+</span><span class="stat-label">Partners</span></div>
                     <div class="mini-stat"><span class="stat-num"><span class="stat-counter" data-target="3">0</span></span><span class="stat-label">Continents</span></div>
@@ -908,6 +1030,7 @@
     </div>
 </section>
 
+<!-- MISSION VALUES SECTION -->
 <section class="mission-values-section">
     <div class="container">
         <div class="section-title" data-aos="fade-up"><h2>Our Guiding Compass</h2><p class="section-sub">Defining our purpose, direction, and principles</p></div>
@@ -919,6 +1042,7 @@
     </div>
 </section>
 
+<!-- FLIP SECTION -->
 <section class="flip-section">
     <div class="container">
         <div class="section-title" data-aos="fade-up"><h2>Core Pillars of Innovation</h2><p class="section-sub">Hover over cards to flip and discover what drives Fusion Labs</p></div>
@@ -931,15 +1055,17 @@
     </div>
 </section>
 
+<!-- WHY FUSION LABS SECTION -->
 <section style="padding: 3rem 0 4rem; background: var(--bg-deep);">
     <div class="container"><div class="section-title"><h2>Why Fusion Labs</h2><p class="section-sub">The edge that transforms challenges into opportunities</p></div><div class="why-grid"><div class="why-card"><i class="fas fa-rocket"></i><h3>Agile R&D</h3><p>From concept to prototype in weeks, not months.</p></div><div class="why-card"><i class="fas fa-shield-alt"></i><h3>Enterprise Security</h3><p>Built-in compliance & data-first architecture.</p></div><div class="why-card"><i class="fas fa-chalkboard-user"></i><h3>Human-Centric AI</h3><p>Designing technology that amplifies human potential.</p></div></div></div>
 </section>
 
+<!-- STATS SECTION -->
 <section class="stats-section">
     <div class="container"><div class="stats-grid"><div class="stat-item"><div class="stat-number"><span class="stat-counter" data-target="40">0</span>+</div><p>AI & Automation Projects</p></div><div class="stat-item"><div class="stat-number"><span class="stat-counter" data-target="98">0</span>%</div><p>Client Retention Rate</p></div><div class="stat-item"><div class="stat-number"><span class="stat-counter" data-target="15">0</span>+</div><p>Global Research Partners</p></div><div class="stat-item"><div class="stat-number"><span class="stat-counter" data-target="3">0</span>x</div><p>Year-on-Year Innovation Growth</p></div></div></div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -975,9 +1101,53 @@
         </div>
     </div>
 </footer>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 800, once: false, mirror: false, offset: 80 });
+    
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
+        });
+
+        // Close menu on link click (for mobile)
+        window.closeMenu = function() {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        };
+
+        // Add click event to all nav links to close menu
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
     
     // Generic counter animation function
     function animateCounter(el, target) { 
